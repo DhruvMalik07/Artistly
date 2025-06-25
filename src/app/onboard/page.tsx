@@ -142,7 +142,7 @@ export default function OnboardPage() {
         </div>
         <div>
           <label className="block font-bold mb-2 text-yellow-700">Fee Range *</label>
-          <select {...register("fee")} className="border border-gray-400 p-2 rounded w-full focus:ring-2 focus:ring-yellow-400 bg-gray-100 text-gray-800 font-semibold" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {}}>
+          <select {...register("fee")} className="border border-gray-400 p-2 rounded w-full focus:ring-2 focus:ring-yellow-400 bg-gray-100 text-gray-800 font-semibold">
             <option value="" className="text-gray-500 font-normal">Select Fee Range</option>
             {feeRanges.map((fee) => (
               <option key={fee} value={fee} className="text-gray-800 font-semibold">{fee}</option>
