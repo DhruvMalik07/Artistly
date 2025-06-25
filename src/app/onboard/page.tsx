@@ -2,7 +2,6 @@
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useState } from "react";
 import { useArtistContext } from "@/context/ArtistContext";
 
 const categories = [
@@ -38,7 +37,7 @@ export default function OnboardPage() {
     handleSubmit,
     control,
     formState: { errors },
-    setValue,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -52,7 +51,7 @@ export default function OnboardPage() {
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     const formData = { ...data, profileImage: data.profileImage?.[0]?.name || null };
     addArtist({
       name: data.name,
@@ -96,12 +95,12 @@ export default function OnboardPage() {
                     <input
                       type="checkbox"
                       value={cat}
-                      checked={field.value.includes(cat)}
+                      checked={(field.value ?? []).includes(cat)}
                       onChange={e => {
                         if (e.target.checked) {
-                          field.onChange([...field.value, cat]);
+                          field.onChange([...(field.value ?? []), cat]);
                         } else {
-                          field.onChange(field.value.filter((v) => v !== cat));
+                          field.onChange((field.value ?? []).filter((v: string) => v !== cat));
                         }
                       }}
                     />
@@ -125,12 +124,12 @@ export default function OnboardPage() {
                     <input
                       type="checkbox"
                       value={lang}
-                      checked={field.value.includes(lang)}
+                      checked={(field.value ?? []).includes(lang)}
                       onChange={e => {
                         if (e.target.checked) {
-                          field.onChange([...field.value, lang]);
+                          field.onChange([...(field.value ?? []), lang]);
                         } else {
-                          field.onChange(field.value.filter((v) => v !== lang));
+                          field.onChange((field.value ?? []).filter((v: string) => v !== lang));
                         }
                       }}
                     />
