@@ -22,7 +22,15 @@ const priceRanges = [
   { label: 'Above 20,000', min: 20001, max: Infinity },
 ];
 
-function ArtistCard({ artist }) {
+type Artist = {
+  id: number;
+  name: string;
+  category: string;
+  price: string;
+  location: string;
+};
+
+function ArtistCard({ artist }: { artist: Artist }) {
   return (
     <div className="bg-white/95 rounded-2xl shadow-xl p-6 flex flex-col items-center hover:scale-105 hover:shadow-2xl transition-transform duration-200 border-t-4 border-b-4 border-transparent hover:border-pink-400">
       <FaUserCircle className="h-16 w-16 text-blue-400 mb-3" />
@@ -43,7 +51,7 @@ export default function ArtistsPage() {
   const [location, setLocation] = useState('All');
   const [price, setPrice] = useState('All');
 
-  const filteredArtists = artists.filter((artist) => {
+  const filteredArtists = artists.filter((artist: Artist) => {
     const matchCategory = category === 'All' || artist.category === category;
     const matchLocation = location === 'All' || artist.location === location;
     const priceRange = priceRanges.find((p) => p.label === price) || priceRanges[0];
