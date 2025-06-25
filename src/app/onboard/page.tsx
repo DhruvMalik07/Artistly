@@ -37,7 +37,6 @@ export default function OnboardPage() {
     handleSubmit,
     control,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -51,8 +50,8 @@ export default function OnboardPage() {
     },
   });
 
-  const onSubmit = (data: any) => {
-    const formData = { ...data, profileImage: data.profileImage?.[0]?.name || null };
+  const onSubmit = (data: Record<string, any>) => {
+    const formData = { ...data };
     addArtist({
       name: data.name,
       category: data.categories[0] || '',
