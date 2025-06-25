@@ -30,6 +30,15 @@ const schema = yup.object().shape({
   profileImage: yup.mixed().notRequired(),
 });
 
+type FormData = {
+  name: string;
+  bio: string;
+  categories: string[];
+  languages: string[];
+  fee: string;
+  location: string;
+};
+
 export default function OnboardPage() {
   const { addArtist } = useArtistContext();
   const {
@@ -50,11 +59,11 @@ export default function OnboardPage() {
     },
   });
 
-  const onSubmit = (data: Record<string, any>) => {
+  const onSubmit = (data: FormData) => {
     const formData = { ...data };
     addArtist({
       name: data.name,
-      category: data.categories[0] || '',
+      category: data.categories?.[0] || '',
       price: data.fee,
       location: data.location,
     });
