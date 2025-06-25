@@ -40,7 +40,7 @@ type FormData = {
 };
 
 export default function OnboardPage() {
-  const { addArtist, artists } = useArtistContext() as { artists: Artist[] };
+  const { addArtist } = useArtistContext();
   const {
     register,
     handleSubmit,
