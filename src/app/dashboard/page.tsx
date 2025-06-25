@@ -6,7 +6,19 @@ const mockSubmissions = [
   { id: 5, name: 'DJ Meera', category: 'Bollywood DJ', city: 'Delhi', fee: '22,000' },
 ];
 
-function Table({ data }) {
+type TableRow = {
+  id: number;
+  name: string;
+  category: string;
+  city: string;
+  fee: string;
+};
+
+type TableProps = {
+  data: TableRow[];
+};
+
+function Table({ data }: TableProps) {
   return (
     <table className="min-w-full border divide-y divide-gray-200 rounded-xl overflow-hidden shadow-xl">
       <thead className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-white">

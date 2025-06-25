@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FaUserCircle } from 'react-icons/fa';
 import { useArtistContext } from "@/context/ArtistContext";
@@ -43,7 +43,7 @@ function ArtistCard({ artist }: { artist: Artist }) {
   );
 }
 
-export default function ArtistsPage() {
+function ArtistsPageContent() {
   const { artists } = useArtistContext();
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category') || 'All';
@@ -81,5 +81,13 @@ export default function ArtistsPage() {
         )}
       </div>
     </main>
+  );
+}
+
+export default function ArtistsPage() {
+  return (
+    <Suspense>
+      <ArtistsPageContent />
+    </Suspense>
   );
 }

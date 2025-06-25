@@ -31,12 +31,12 @@ const schema = yup.object().shape({
 });
 
 type FormData = {
-  name: string;
-  bio: string;
-  categories: string[];
-  languages: string[];
-  fee: string;
-  location: string;
+  name?: string;
+  bio?: string;
+  categories?: string[];
+  languages?: string[];
+  fee?: string;
+  location?: string;
 };
 
 export default function OnboardPage() {
@@ -62,10 +62,10 @@ export default function OnboardPage() {
   const onSubmit = (data: FormData) => {
     const formData = { ...data };
     addArtist({
-      name: data.name,
+      name: data.name || '',
       category: data.categories?.[0] || '',
-      price: data.fee,
-      location: data.location,
+      price: data.fee || '',
+      location: data.location || '',
     });
     console.log("Artist Onboarding Data:", formData);
     alert("Form submitted! Check console for data.");
