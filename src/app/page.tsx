@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { FaMicrophoneAlt, FaMusic, FaUserFriends, FaRegSmile, FaHeadphones, FaCompactDisc } from 'react-icons/fa';
-import { ArtistProvider } from "@/context/ArtistContext";
 
 const categories = [
   { name: 'Pop Singer', icon: <FaMicrophoneAlt className="h-10 w-10 text-pink-500" /> },

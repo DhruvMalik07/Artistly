@@ -69,7 +69,6 @@ export default function OnboardPage() {
     reset();
   };
 
-  const profileImage = watch("profileImage");
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
     if (file) {
