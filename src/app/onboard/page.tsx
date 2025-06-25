@@ -32,7 +32,6 @@ const schema = yup.object().shape({
 });
 
 export default function OnboardPage() {
-  const [imagePreview, setImagePreview] = useState(null);
   const { addArtist } = useArtistContext();
   const {
     register,
@@ -40,8 +39,6 @@ export default function OnboardPage() {
     control,
     formState: { errors },
     setValue,
-    watch,
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -65,17 +62,6 @@ export default function OnboardPage() {
     });
     console.log("Artist Onboarding Data:", formData);
     alert("Form submitted! Check console for data.");
-    setImagePreview(null);
-    reset();
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setImagePreview(URL.createObjectURL(file));
-    } else {
-      setImagePreview(null);
-    }
   };
 
   return (
@@ -165,22 +151,6 @@ export default function OnboardPage() {
             ))}
           </select>
           {errors.fee && <p className="text-red-500 text-sm mt-1">{errors.fee.message}</p>}
-        </div>
-        <div>
-          <label className="block font-bold mb-2 text-blue-700">Profile Image (optional)</label>
-          <input
-            type="file"
-            accept="image/*"
-            {...register("profileImage")}
-            onChange={e => {
-              handleImageChange(e);
-              setValue("profileImage", e.target.files);
-            }}
-            className="bg-gray-100 border border-gray-400 rounded p-2 w-full"
-          />
-          {imagePreview && (
-            <img src={imagePreview} alt="Preview" className="mt-2 h-24 rounded shadow" />
-          )}
         </div>
         <div>
           <label className="block font-bold mb-2 text-pink-700">Location *</label>
