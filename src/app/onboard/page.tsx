@@ -95,7 +95,7 @@ export default function OnboardPage() {
                       type="checkbox"
                       value={cat}
                       checked={(field.value ?? []).includes(cat)}
-                      onChange={e => {
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         if (e.target.checked) {
                           field.onChange([...(field.value ?? []), cat]);
                         } else {
@@ -124,7 +124,7 @@ export default function OnboardPage() {
                       type="checkbox"
                       value={lang}
                       checked={(field.value ?? []).includes(lang)}
-                      onChange={e => {
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         if (e.target.checked) {
                           field.onChange([...(field.value ?? []), lang]);
                         } else {
@@ -142,7 +142,7 @@ export default function OnboardPage() {
         </div>
         <div>
           <label className="block font-bold mb-2 text-yellow-700">Fee Range *</label>
-          <select {...register("fee")} className="border border-gray-400 p-2 rounded w-full focus:ring-2 focus:ring-yellow-400 bg-gray-100 text-gray-800 font-semibold">
+          <select {...register("fee")} className="border border-gray-400 p-2 rounded w-full focus:ring-2 focus:ring-yellow-400 bg-gray-100 text-gray-800 font-semibold" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {}}>
             <option value="" className="text-gray-500 font-normal">Select Fee Range</option>
             {feeRanges.map((fee) => (
               <option key={fee} value={fee} className="text-gray-800 font-semibold">{fee}</option>
